@@ -1,0 +1,26 @@
+
+jobs:
+- name: concourse-trial-publish
+  public: true
+  serial: true
+  plan:
+  - get: concourse-trial
+  - put: hello-world-docker-image
+    params:
+      build: concourse-trial/a
+
+resources:
+- name: concourse-trial
+  type: git
+  source:
+    uri: https://github.com/topiaruss/concourse-trial.git
+
+- name: concourse-trial-docker-image
+  type: docker-image
+  source:
+    email: {{quay_io-email}}
+    username: {{quay_io-username}}
+    password: {{quay_io-password}}
+    repository: {{quay_io-username}}/concourse-trial
+
+
