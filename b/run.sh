@@ -25,6 +25,6 @@ fly_target=lite
 #pushd $DIR
   fly -t ${fly_target} sp configure -c pipeline.yaml -p main --load-vars-from ${stub} -n
   fly -t ${fly_target} unpause-pipeline --pipeline main
-  fly -t ${fly_target} trigger-job -j main/concourse-trial-publish-a
-  fly -t ${fly_target} watch -j main/concourse-trial-publish-a
+  fly -t ${fly_target} trigger-job -j main/concourse-trial-publish-b
+  fly -t ${fly_target} watch -j main/concourse-trial-publish-b
 #popd

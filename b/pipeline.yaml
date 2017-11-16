@@ -1,12 +1,12 @@
 jobs:
-- name: concourse-trial-publish-a
+- name: concourse-trial-publish-b
   public: true
   serial: true
   plan:
   - get: concourse-trial
   - put: concourse-trial-docker-image
     params:
-      build: concourse-trial/a
+      build: concourse-trial/b
 
 resources:
 - name: concourse-trial
@@ -20,6 +20,6 @@ resources:
     email: {{quay_io-email}}
     username: {{quay_io-username}}
     password: {{quay_io-password}}
-    repository: quay.io/russf/concourse-trial-a
+    repository: quay.io/russf/concourse-trial-b
 
 
