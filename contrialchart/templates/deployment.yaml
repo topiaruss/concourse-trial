@@ -1,0 +1,24 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: {{ template "contrialchart.fullname" . }}
+  labels:
+    app: {{ template "contrialchart.name" . }}
+    chart: {{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}
+    release: {{ .Release.Name }}
+    heritage: {{ .Release.Service }}
+spec:
+  replicas: {{ .Values.replicaCount }}
+  template:
+    metadata:
+      labels:
+        app: {{ template "contrialchart.name" . }}
+        release: {{ .Release.Name }}
+    spec:
+      containers:
+        - name: concourse-trial-a
+          image: "quay.io/russf/concourse-trial-a"
+          imagePullPolicy: Always
+        - name: concourse-trial-b
+          image: "quay.io/russf/concourse-trial-b"
+          imagePullPolicy: Always

@@ -23,8 +23,8 @@ stub=~/.concourse_credentials.yaml
 
 fly_target=lite
 #pushd $DIR
-  fly -t ${fly_target} sp configure -c pipeline.yaml -p maina --load-vars-from ${stub} -n
-  fly -t ${fly_target} unpause-pipeline --pipeline maina
-  fly -t ${fly_target} trigger-job -j maina/concourse-trial-publish-a
-  fly -t ${fly_target} watch -j maina/concourse-trial-publish-a
+  fly -t ${fly_target} sp configure -c pipeline.yaml -p conc-trial-a --load-vars-from ${stub} -n
+  fly -t ${fly_target} unpause-pipeline --pipeline conc-trial-a
+  fly -t ${fly_target} trigger-job -j conc-trial-a/concourse-trial-publish-a
+  fly -t ${fly_target} watch -j conc-trial-a/concourse-trial-publish-a
 #popd
