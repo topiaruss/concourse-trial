@@ -9,8 +9,9 @@ settings = {
     'default.topic.config': {'auto.offset.reset': 'smallest'}
 }
 
-c = Consumer(settings)
+print("starting B")
 
+c = Consumer(settings)
 c.subscribe(['testloop'])
 
 try:

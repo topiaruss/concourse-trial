@@ -14,13 +14,7 @@ RUN pip install pipenv && mkdir app
 
 WORKDIR app
 
-COPY * ./
-
-RUN ls -al
-
+COPY Pipfile* ./
 RUN pipenv install .
-
+COPY * ./
 CMD ["bash", "-c", "$(pipenv --venv)/bin/python3 component.py"]
-
-
-
