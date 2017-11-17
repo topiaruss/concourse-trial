@@ -14,7 +14,7 @@ resources:
   source:
     uri: https://github.com/topiaruss/concourse-trial.git
 
-- name: concourse-trial-docker-image
+- name: concourse-trial-docker-image-a
   type: docker-image
   source:
     email: {{quay_io-email}}
