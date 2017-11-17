@@ -4,7 +4,7 @@ jobs:
   serial: true
   plan:
   - get: concourse-trial
-  - put: concourse-trial-docker-image-b
+  - put: concourse-trial-docker-image-a
     params:
       build: concourse-trial/a
 
