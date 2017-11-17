@@ -17,4 +17,4 @@ WORKDIR app
 COPY Pipfile* ./
 RUN pipenv install .
 COPY * ./
-CMD ["bash", "-c", "$(pipenv --venv)/bin/python3 component.py"]
+ENTRYPOINT ["bash", "-c", "$(pipenv --venv)/bin/python3 component.py"]
