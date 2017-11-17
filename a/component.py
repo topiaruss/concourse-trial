@@ -8,6 +8,6 @@ while 1:
     for i in range(10):
         mess = 'world %s' % datetime.datetime.now()
         p.produce('testloop', key='hello', value=mess)
-    time.sleep(1000)
+    time.sleep(1)
     print('flush ' + mess)
     p.flush()
