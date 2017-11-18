@@ -1,4 +1,5 @@
 from confluent_kafka import Consumer, KafkaError
+import multiprocessing
 
 settings = {
     'bootstrap.servers': 'winsome-hare-kafka:9092',
