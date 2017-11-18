@@ -1,0 +1,42 @@
+jobs:
+- name: concourse-trial-publish-combo
+  public: true
+  plan:
+  - aggregate:
+    - get: concourse-trial
+      trigger: true
+    - do:
+      - put: concourse-trial-docker-image-a
+        params:
+          build: concourse-trial/a
+          dockerfile: a
+    - do:
+      - put: concourse-trial-docker-image-b
+        params:
+          build: concourse-trial/b
+          dockerfile: b
+
+
+resources:
+- name: concourse-trial
+  type: git
+  source:
+    uri: https://github.com/topiaruss/concourse-trial.git
+
+- name: concourse-trial-docker-image-a
+  type: docker-image
+  source:
+    email: {{quay_io-email}}
+    username: {{quay_io-username}}
+    password: {{quay_io-password}}
+    repository: quay.io/russf/concourse-trial-a
+
+- name: concourse-trial-docker-image-b
+  type: docker-image
+  source:
+    email: {{quay_io-email}}
+    username: {{quay_io-username}}
+    password: {{quay_io-password}}
+    repository: quay.io/russf/concourse-trial-b
+
+
