@@ -6,15 +6,15 @@ jobs:
   plan:
   - get: concourse-trial
     trigger: true
-    - aggregate:
-      - do:
-        - put: concourse-trial-docker-image-a
-          params:
-            build: concourse-trial/a
-      - do:
-        - put: concourse-trial-docker-image-b
-          params:
-            build: concourse-trial/b
+  - aggregate:
+    - do:
+      - put: concourse-trial-docker-image-a
+        params:
+          build: concourse-trial/a
+    - do:
+      - put: concourse-trial-docker-image-b
+        params:
+          build: concourse-trial/b
 
 
 resources:
