@@ -1,18 +1,20 @@
 jobs:
 - name: concourse-trial-publish-combo
   public: true
+  serial: true
+
   plan:
-  - aggregate:
-    - get: concourse-trial
-      trigger: true
-    - do:
-      - put: concourse-trial-docker-image-a
-        params:
-          build: concourse-trial/a
-    - do:
-      - put: concourse-trial-docker-image-b
-        params:
-          build: concourse-trial/b
+  - get: concourse-trial
+    trigger: true
+    - aggregate:
+      - do:
+        - put: concourse-trial-docker-image-a
+          params:
+            build: concourse-trial/a
+      - do:
+        - put: concourse-trial-docker-image-b
+          params:
+            build: concourse-trial/b
 
 
 resources:
