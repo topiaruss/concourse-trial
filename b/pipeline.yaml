@@ -23,4 +23,3 @@ resources:
     password: {{quay_io-password}}
     repository: quay.io/russf/concourse-trial-b
 
-
