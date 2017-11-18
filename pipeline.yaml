@@ -9,12 +9,10 @@ jobs:
       - put: concourse-trial-docker-image-a
         params:
           build: concourse-trial/a
-          dockerfile: a
     - do:
       - put: concourse-trial-docker-image-b
         params:
           build: concourse-trial/b
-          dockerfile: b
 
 
 resources:
