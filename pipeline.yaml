@@ -11,10 +11,10 @@ jobs:
       - put: concourse-trial-docker-image-a
         params:
           build: concourse-trial/a
-    - do:
-      - put: concourse-trial-docker-image-b
-        params:
-          build: concourse-trial/b
+    # - do:
+    #   - put: concourse-trial-docker-image-b
+    #     params:
+    #       build: concourse-trial/b
 
 
 resources:
@@ -31,12 +31,12 @@ resources:
     password: {{quay_io-password}}
     repository: quay.io/russf/concourse-trial-a
 
-- name: concourse-trial-docker-image-b
-  type: docker-image
-  source:
-    email: {{quay_io-email}}
-    username: {{quay_io-username}}
-    password: {{quay_io-password}}
-    repository: quay.io/russf/concourse-trial-b
+# - name: concourse-trial-docker-image-b
+#   type: docker-image
+#   source:
+#     email: {{quay_io-email}}
+#     username: {{quay_io-username}}
+#     password: {{quay_io-password}}
+#     repository: quay.io/russf/concourse-trial-b
 
 
