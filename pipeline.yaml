@@ -6,11 +6,13 @@ jobs:
   plan:
   - get: concourse-trial
     trigger: true
-  - aggregate:
-    - do:
-      - put: concourse-trial-docker-image-a
-        params:
-          build: concourse-trial/a
+
+  # - aggregate:
+  #   - do:
+  #     - put: concourse-trial-docker-image-a
+  #       params:
+  #         build: concourse-trial/a
+
     # - do:
     #   - put: concourse-trial-docker-image-b
     #     params:
@@ -23,13 +25,13 @@ resources:
   source:
     uri: https://github.com/topiaruss/concourse-trial.git
 
-- name: concourse-trial-docker-image-a
-  type: docker-image
-  source:
-    email: {{quay_io-email}}
-    username: {{quay_io-username}}
-    password: {{quay_io-password}}
-    repository: quay.io/russf/concourse-trial-a
+# - name: concourse-trial-docker-image-a
+#   type: docker-image
+#   source:
+#     email: {{quay_io-email}}
+#     username: {{quay_io-username}}
+#     password: {{quay_io-password}}
+#     repository: quay.io/russf/concourse-trial-a
 
 # - name: concourse-trial-docker-image-b
 #   type: docker-image
