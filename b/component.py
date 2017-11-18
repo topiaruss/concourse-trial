@@ -9,7 +9,7 @@ settings = {
     'default.topic.config': {'auto.offset.reset': 'smallest'}
 }
 
-print("starting B")
+print("starting B - cpu_count: %s" % multiprocessing.cpu_count())
 
 c = Consumer(settings)
 c.subscribe(['testloop'])
