@@ -1,30 +1,33 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "d2dab5b26979993d3797ecb9efad8ae1475725ebf0a17e3937b5ad675d7a7db6"
+            "sha256": "3826102103a410545d96f5ec98019f867407f9ff9a1778fce7faac1520f2dee6"
         },
         "host-environment-markers": {
             "implementation_name": "cpython",
-            "implementation_version": "3.6.3",
+            "implementation_version": "0",
             "os_name": "posix",
             "platform_machine": "x86_64",
             "platform_python_implementation": "CPython",
             "platform_release": "16.7.0",
             "platform_system": "Darwin",
             "platform_version": "Darwin Kernel Version 16.7.0: Thu Jun 15 17:36:27 PDT 2017; root:xnu-3789.70.16~2/RELEASE_X86_64",
-            "python_full_version": "3.6.3",
-            "python_version": "3.6",
+            "python_full_version": "2.7.10",
+            "python_version": "2.7",
             "sys_platform": "darwin"
         },
         "pipfile-spec": 6,
-        "requires": {
-            "python_version": "3.6"
-        },
+        "requires": {},
         "sources": [
             {
                 "name": "pypi",
                 "url": "https://pypi.python.org/simple",
                 "verify_ssl": true
+            },
+            {
+                "name": "russ/dev",
+                "url": "http://altered-monkey-helm-devpi:3141/russ/dev/+simple/",
+                "verify_ssl": false
             }
         ]
     },
@@ -34,6 +37,24 @@
                 "sha256:4c34bfe8f823ee3777d93820ec6578365d2bde3cd1302cbd0e44c86b68643667"
             ],
             "version": "==0.11.0"
+        },
+        "msgflow": {
+            "hashes": [],
+            "version": "==0.0.9"
+        },
+        "py": {
+            "hashes": [
+                "sha256:8cca5c229d225f8c1e3085be4fcf306090b00850fefad892f9d96c7b6e2f310f",
+                "sha256:ca18943e28235417756316bfada6cd96b23ce60dd532642690dcfdaba988a76d"
+            ],
+            "version": "==1.5.2"
+        },
+        "pytest": {
+            "hashes": [
+                "sha256:241d7e7798d79192a123ceaf64c602b4d233eacf6d6e42ae27caa97f498b7dc6",
+                "sha256:6d5bd4f7113b444c55a3bbb5c738a3dd80d43563d063fc42dcb0aaefbdd78b81"
+            ],
+            "version": "==3.2.5"
         }
     },
     "develop": {}

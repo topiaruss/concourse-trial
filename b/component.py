@@ -1,4 +1,3 @@
-from confluent_kafka import Consumer, KafkaError
 import multiprocessing
 from msgflow.api import Msgflow
 

@@ -40,7 +40,7 @@
         },
         "msgflow": {
             "hashes": [],
-            "version": "==0.0.4"
+            "version": "==0.0.9"
         },
         "py": {
             "hashes": [
@@ -81,17 +81,17 @@
         },
         "devpi-client": {
             "hashes": [
-                "sha256:93507bbdcd88e71fb4483c7572775fde8c15b0c5a70b87908eebec3d9c73851c",
-                "sha256:27510e70cbd20a61e51383fe4454089a6dff1685ded2ad0ebc7695d9544cc151"
+                "sha256:996048661f12a95ed3061580407d21baf140cc53c3dba22122b6a6f56d668c50",
+                "sha256:f94dc9a7534fd87d1a0b9325c24362da1a8408ae947645654c8f3935e9e88770"
             ],
-            "version": "==3.0.0"
+            "version": "==3.1.0"
         },
         "devpi-common": {
             "hashes": [
-                "sha256:253bf0ad8160cda8a553466c0ebbd8633fab8ffdadc0356d526880dd67bdcbc0",
-                "sha256:d89634a57981ed43cb5dcd25e00c9454ea111189c5ddc08d945b3d5187ada5fd"
+                "sha256:b76e69f4b81a578e5e1fda06c849ff020af572dbbc1330fddd1ad03b074f11ab",
+                "sha256:8b837f42b9ace632aa4fdcb21d16702406ba7be420cbb5f50b64c2c2630a0166"
             ],
-            "version": "==3.1.0"
+            "version": "==3.2.0"
         },
         "idna": {
             "hashes": [

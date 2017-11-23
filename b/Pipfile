@@ -5,15 +5,19 @@ verify_ssl = true
 name = "pypi"
 
 
+[[source]]
+
+url = "http://altered-monkey-helm-devpi:3141/russ/dev/+simple/"
+verify_ssl = false
+name = "russ/dev"
+
+
 [dev-packages]
 
 
 
 [packages]
 
+pytest = "*"
+msgflow = "*"
 confluent-kafka = "*"
-
-
-[requires]
-
-python_version = "3.6"
