@@ -13,11 +13,16 @@ while 1:
         end_at = start_level_at + 20.0
         wait = 1.0 / (1 << bits)
         print(bits, wait)
+        century = 0
         while time.time() < end_at:
             msg = dict(hello='world %s at %s' %
                       (wait, datetime.datetime.now()))
             flow.put('testloop3', msg)
             time.sleep(wait)
+            century += 1
+            if century == 100:
+                century = 0
+                flow.flush()
 
     print('flush bits %s msg %s' % (bits, msg))
     flow.flush()
