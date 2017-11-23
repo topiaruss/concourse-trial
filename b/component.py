@@ -21,7 +21,7 @@ try:
         if msg is None:
             continue
         elif not msg.error():
-            print('Received message: {0}'.format(msg.value()))
+            print('Received message: {0}'.format(msg))
         elif msg.error().code() == KafkaError._PARTITION_EOF:
             print('End of partition reached {0}/{1}'
                   .format(msg.topic(), msg.partition()))
