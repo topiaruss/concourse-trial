@@ -1,4 +1,3 @@
-from confluent_kafka import Producer
 import datetime
 import multiprocessing
 import time
@@ -9,10 +8,16 @@ print("starting A - cpu_count: %s" % multiprocessing.cpu_count())
 flow = Msgflow({'bootstrap.servers':
                 'winsome-hare-kafka.default.svc.cluster.local:9092'})
 while 1:
-    for i in range(10):
-        msg = dict(hello='world at %s' % datetime.datetime.now())
-        flow.put('testloop2', msg)
-    print('flush %s' % msg)
+    for bits in range(10):
+        start_level_at = time.time()
+        end_at = start_level_at + 30.0
+        wait = 1.0 / (1 << bits)
+        while time.time() < end_at:
+            msg = dict(hello='world %s at %s' %
+                      (wait, datetime.datetime.now()))
+            flow.put('testloop3', msg)
+            time.sleep(wait)
+
+    print('flush bits %s msg %s' % (bits, msg))
     flow.flush()
-    time.sleep(1)
 
