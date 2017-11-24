@@ -20,7 +20,7 @@ while 1:
             flow.put('testloop3', msg)
             time.sleep(wait)
             century += 1
-            if century == 100:
+            if century == 500:
                 century = 0
                 flow.flush()
 
