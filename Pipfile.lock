@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "84e45b8736251c30a0bb288031f8a9ec0c523edb4d75b2d60bdd3a644dbc0b48"
+            "sha256": "ff14e8e21fc7f91fff452d19268d62afa69d68d54607ba925dc12eab0d9881e7"
         },
         "host-environment-markers": {
             "implementation_name": "cpython",
@@ -26,7 +26,7 @@
             },
             {
                 "name": "russ/dev",
-                "url": "http://altered-monkey-helm-devpi:3141/russ/dev/+simple/",
+                "url": "http://devpi:3141/russ/dev/+simple/",
                 "verify_ssl": false
             }
         ]
@@ -40,7 +40,7 @@
         },
         "msgflow": {
             "hashes": [],
-            "version": "==0.0.9"
+            "version": "==0.0.12"
         },
         "py": {
             "hashes": [
