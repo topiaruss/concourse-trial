@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "ff14e8e21fc7f91fff452d19268d62afa69d68d54607ba925dc12eab0d9881e7"
+            "sha256": "2a51b19628c85cc9f75b3a356df2626e129c0c6732dd2548a7697ec6070ac2f3"
         },
         "host-environment-markers": {
             "implementation_name": "cpython",
@@ -32,6 +32,12 @@
         ]
     },
     "default": {
+        "bottle": {
+            "hashes": [
+                "sha256:39b751aee0b167be8dffb63ca81b735bbf1dd0905b3bc42761efedee8f123355"
+            ],
+            "version": "==0.12.13"
+        },
         "confluent-kafka": {
             "hashes": [
                 "sha256:4c34bfe8f823ee3777d93820ec6578365d2bde3cd1302cbd0e44c86b68643667"
@@ -109,9 +115,9 @@
         },
         "pluggy": {
             "hashes": [
-                "sha256:bd60171dbb250fdebafad46ed16d97065369da40568ae948ef7117eee8536e94"
+                "sha256:7f8ae7f5bdf75671a718d2daf0a64b7885f74510bcd98b1a0bb420eb9a9d0cff"
             ],
-            "version": "==0.5.2"
+            "version": "==0.6.0"
         },
         "py": {
             "hashes": [
