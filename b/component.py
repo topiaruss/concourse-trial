@@ -3,8 +3,7 @@ from msgflow.api import Msgflow
 
 print("starting B - cpu_count: %s" % multiprocessing.cpu_count())
 
-flow = Msgflow({'bootstrap.servers':
-                'winsome-hare-kafka.default.svc.cluster.local:9092'})
+flow = Msgflow({'bootstrap.servers': 'kafka:9092'})
 consumer = flow.get_consumer('testloop3')
 try:
     count = 0
@@ -21,3 +20,4 @@ except KeyboardInterrupt:
     pass
 finally:
     consumer.close()
+

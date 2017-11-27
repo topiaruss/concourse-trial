@@ -5,8 +5,7 @@ from msgflow.api import Msgflow
 
 print("starting A - cpu_count: %s" % multiprocessing.cpu_count())
 
-flow = Msgflow({'bootstrap.servers':
-                'winsome-hare-kafka.default.svc.cluster.local:9092'})
+flow = Msgflow({'bootstrap.servers': 'kafka:9092'})
 while 1:
     for bits in range(19):
         start_level_at = time.time()
