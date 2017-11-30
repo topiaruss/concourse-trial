@@ -1,12 +1,9 @@
 import concurrent.futures
-import multiprocessing
-import time
 import datetime
+import time
 
 from msgflow.component import Component, Msgflow
 from py_zipkin.zipkin import zipkin_client_span
-
-print("starting Alpha - cpu_count: %s" % multiprocessing.cpu_count())
 
 
 class Alpha(Component):
@@ -14,7 +11,7 @@ class Alpha(Component):
         super().__init__(topic, offset=offset)
 
     def process_one(self, zipkin_context, data):
-        print('got %s' % data)
+        #self.logger.debug('TRIGGER CHAIN %s' % data)
         zipkin_context.update_binary_annotations(dict(foo='bar'))
         self.sub1()
         self.enqueue_item(zipkin_context, 'beta_topic', dict(beta=2))
@@ -38,7 +35,7 @@ class Alpha(Component):
     @zipkin_client_span(service_name='Alpha', span_name='sub2')
     def sub2(self):
         time.sleep(0.06)
-        #raise ValueError('Dummy exception')
+        # raise ValueError('Dummy exception')
 
 
 flow = Msgflow({'bootstrap.servers': 'kafka:9092'},
@@ -49,10 +46,12 @@ a = Alpha('alpha_topic', offset="largest")
 def put_tasks():
     """loop that pops an alpha on a topic regularly"""
     time.sleep(0.25)
+    # logger = logging.getLogger('Putter')
     while True:
         print("put")
         flow.put('alpha_topic', dict(a=0, time=str(datetime.datetime.now())))
         time.sleep(5.0)
+
 
 # only adding this so we can have concurrent put tasks, for testing.
 tasks = [a.run, put_tasks]
