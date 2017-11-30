@@ -6,7 +6,7 @@ import datetime
 from msgflow.component import Component, Msgflow
 from py_zipkin.zipkin import zipkin_client_span
 
-print("starting Alpha - cpu_count: %s" % multiprocessing.cpu_count())
+print("starting Beta - cpu_count: %s" % multiprocessing.cpu_count())
 
 
 class Beta(Component):
