@@ -48,7 +48,6 @@ def put_tasks():
     time.sleep(0.25)
     # logger = logging.getLogger('Putter')
     while True:
-        print("put")
         flow.put('alpha_topic', dict(a=0, time=str(datetime.datetime.now())))
         time.sleep(5.0)
 
