@@ -18,4 +18,4 @@ COPY Pipfile* ./
 RUN pipenv install . && pipenv graph
 COPY * ./
 ENV PYTHONUNBUFFERED=0
-ENTRYPOINT ["bash", "-c", "$(pipenv --venv)/bin/python3 component.py"]
+CMD ["./entrypoint.sh"]
