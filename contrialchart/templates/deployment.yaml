@@ -19,6 +19,20 @@ spec:
         - name: concourse-trial-a
           image: "quay.io/russf/concourse-trial-a"
           imagePullPolicy: Always
+
         - name: concourse-trial-b
           image: "quay.io/russf/concourse-trial-b"
           imagePullPolicy: Always
+
+        - name: concourse-trial-alpha
+          image: "quay.io/russf/concourse-trial-alpha"
+          imagePullPolicy: Always
+
+        - name: concourse-trial-beta
+          image: "quay.io/russf/concourse-trial-beta"
+          imagePullPolicy: Always
+
+        - name: concourse-trial-gamma
+          image: "quay.io/russf/concourse-trial-gamma"
+          imagePullPolicy: Always
+

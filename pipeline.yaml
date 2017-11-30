@@ -14,6 +14,18 @@ jobs:
       - put: concourse-trial-docker-image-b
         params:
           build: concourse-trial/b
+    - do:
+      - put: concourse-trial-docker-image-alpha
+        params:
+          build: concourse-trial/alpha
+    - do:
+      - put: concourse-trial-docker-image-beta
+        params:
+          build: concourse-trial/beta
+    - do:
+      - put: concourse-trial-docker-image-gamma
+        params:
+          build: concourse-trial/gamma
 
 resources:
 - name: concourse-trial
@@ -36,5 +48,30 @@ resources:
     username: {{quay_io-username}}
     password: {{quay_io-password}}
     repository: quay.io/russf/concourse-trial-b
+
+
+- name: concourse-trial-docker-image-alpha
+  type: docker-image
+  source:
+    email: {{quay_io-email}}
+    username: {{quay_io-username}}
+    password: {{quay_io-password}}
+    repository: quay.io/russf/concourse-trial-alpha
+
+- name: concourse-trial-docker-image-beta
+  type: docker-image
+  source:
+    email: {{quay_io-email}}
+    username: {{quay_io-username}}
+    password: {{quay_io-password}}
+    repository: quay.io/russf/concourse-trial-beta
+
+- name: concourse-trial-docker-image-gamma
+  type: docker-image
+  source:
+    email: {{quay_io-email}}
+    username: {{quay_io-username}}
+    password: {{quay_io-password}}
+    repository: quay.io/russf/concourse-trial-gamma
 
 
