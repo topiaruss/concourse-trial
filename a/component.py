@@ -6,8 +6,14 @@ from msgflow.api import Msgflow
 print("starting A - cpu_count: %s" % multiprocessing.cpu_count())
 
 flow = Msgflow({'bootstrap.servers': 'kafka:9092'})
+
+# tested with MAXBITS 19, single partition kafka on spinning drive.
+# borderline stable.
+# Pulled it back to 8 while testing other features.
+MAX_BIT_SHIFTS = 8
+
 while 1:
-    for bits in range(19):
+    for bits in range(MAX_BIT_SHIFTS):
         start_level_at = time.time()
         end_at = start_level_at + 20.0
         wait = 1.0 / (1 << bits)

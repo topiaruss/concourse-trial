@@ -1,0 +1,26 @@
+[[source]]
+
+url = "https://pypi.python.org/simple"
+verify_ssl = true
+name = "pypi"
+
+
+[[source]]
+
+url = "http://devpi:3141/russ/dev/+simple/"
+verify_ssl = false
+name = "russ/dev"
+
+
+[dev-packages]
+
+devpi-client = "*"
+
+
+[packages]
+
+pytest = "*"
+confluent-kafka = "*"
+py-zipkin = "*"
+msgflow = "*"
+bottle = "*"

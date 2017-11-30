@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "bd71185138eae620aab0138ea5b462437fc96a3271c0381054c8123aeee1eecb"
+            "sha256": "a8343dc9abdc569a102750ca366abb6a9dfbbbbd00ae2214a6d96a93b9e4a27b"
         },
         "host-environment-markers": {
             "implementation_name": "cpython",
@@ -59,11 +59,21 @@
             "markers": "python_version < '3.0'",
             "version": "==1.0.2"
         },
+        "msgflow": {
+            "hashes": [],
+            "version": "==0.0.19"
+        },
         "pluggy": {
             "hashes": [
                 "sha256:7f8ae7f5bdf75671a718d2daf0a64b7885f74510bcd98b1a0bb420eb9a9d0cff"
             ],
             "version": "==0.6.0"
+        },
+        "ply": {
+            "hashes": [
+                "sha256:96e94af7dd7031d8d6dd6e2a8e0de593b511c211a86e28a9c9621c275ac8bacb"
+            ],
+            "version": "==3.10"
         },
         "py": {
             "hashes": [
@@ -71,6 +81,13 @@
                 "sha256:ca18943e28235417756316bfada6cd96b23ce60dd532642690dcfdaba988a76d"
             ],
             "version": "==1.5.2"
+        },
+        "py-zipkin": {
+            "hashes": [
+                "sha256:b9561a82d0d0694da69603d91ca62c98ecf9f8babc8474aca375de56a6b051a3",
+                "sha256:57f8a9acb7130bc184b985400b798f409302f81ee508df577136d16325c6546e"
+            ],
+            "version": "==0.9.0"
         },
         "pytest": {
             "hashes": [
@@ -85,6 +102,12 @@
                 "sha256:70e8a77beed4562e7f14fe23a786b54f6296e34344c23bc42f07b15018ff98e9"
             ],
             "version": "==1.11.0"
+        },
+        "thriftpy": {
+            "hashes": [
+                "sha256:309e57d97b5bfa01601393ad4f245451e989d6206a59279e56866b264a99796d"
+            ],
+            "version": "==0.3.9"
         }
     },
     "develop": {
