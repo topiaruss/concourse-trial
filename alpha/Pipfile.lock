@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "8dc908d1a423d48e33711a17ece3b7d6369f31b1a2dc812d59ccd27ce61fd5d7"
+            "sha256": "e7af17ebd0d14c929bcf38676d71b8dba7f797b9a117ee426058dffa05b2b939"
         },
         "host-environment-markers": {
             "implementation_name": "cpython",
@@ -82,7 +82,7 @@
         },
         "msgflow": {
             "hashes": [],
-            "version": "==0.0.24"
+            "version": "==0.0.29"
         },
         "pluggy": {
             "hashes": [

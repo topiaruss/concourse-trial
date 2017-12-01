@@ -20,8 +20,5 @@ devpi-client = "*"
 [packages]
 
 pytest = "*"
-confluent-kafka = "*"
 py-zipkin = "*"
 msgflow = "*"
-bottle = "*"
-requests = "*"
