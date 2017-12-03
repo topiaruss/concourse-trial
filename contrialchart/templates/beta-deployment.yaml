@@ -1,0 +1,47 @@
+{{- $compname := .Values.beta.name -}}
+{{- $imagename := .Values.beta.image.name -}}
+{{- $imagetag := .Values.beta.image.tag -}}
+{{- $replicas := .Values.beta.replicaCount -}}
+
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: {{ template "contrialchart.fullname" . }}-beta
+  labels:
+    app: {{ template "contrialchart.name" . }}
+    chart: {{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}
+    release: {{ .Release.Name }}
+    heritage: {{ .Release.Service }}
+spec:
+  replicas: {{ $replicas }}
+  template:
+    metadata:
+      labels:
+        app: {{ template "contrialchart.name" . }}
+        component: {{ $compname }}
+        release: {{ .Release.Name }}
+        antiaffinkey: "{{ .Release.Name }}-{{ $compname }}"
+    spec:
+      containers:
+        - name: concourse-trial-{{ $compname }}
+          image: "{{ $imagename }}:{{ $imagetag }}"
+          imagePullPolicy: Always
+      {{- if eq .Values.antiAffinity "hard" }}
+      affinity:
+        podAntiAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+          - topologyKey: "kubernetes.io/hostname"
+            labelSelector:
+              matchLabels:
+                antiaffinkey: "{{ .Release.Name }}-{{ $compname }}"
+      {{- else if eq .Values.antiAffinity "soft" }}
+      affinity:
+        podAntiAffinity:
+          preferredDuringSchedulingIgnoredDuringExecution:
+          - weight: 100
+            podAffinityTerm:
+              labelSelector:
+                matchLabels:
+                  antiaffinkey: "{{ .Release.Name }}-{{ $compname }}"
+              topologyKey: "kubernetes.io/hostname"
+      {{- end }}
