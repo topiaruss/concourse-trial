@@ -7,8 +7,8 @@ from py_zipkin.zipkin import zipkin_client_span
 
 
 class Alpha(Component):
-    def __init__(self, topic, offset="largest"):
-        super().__init__(topic, offset=offset)
+    def __init__(self, topic):
+        super().__init__(topic, pre_drain=True)
 
     def process_one(self, zipkin_context, data):
         #self.logger.debug('TRIGGER CHAIN %s' % data)
@@ -38,13 +38,12 @@ class Alpha(Component):
         # raise ValueError('Dummy exception')
 
 
-flow = Msgflow({'bootstrap.servers': 'kafka:9092'},
-               offset="largest")
-a = Alpha('alpha_topic', offset="largest")
+a = Alpha('alpha_topic')
+flow = Msgflow({'bootstrap.servers': 'kafka:9092'})
 
 
-def put_tasks():
-    """loop that pops an alpha on a topic regularly"""
+def initiate_sample_tasks():
+    """loop that posts on the alpha topic regularly"""
     time.sleep(0.25)
     # logger = logging.getLogger('Putter')
     while True:
@@ -53,7 +52,7 @@ def put_tasks():
 
 
 # only adding this so we can have concurrent put tasks, for testing.
-tasks = [a.run, put_tasks]
+tasks = [a.run, initiate_sample_tasks]
 with concurrent.futures.ThreadPoolExecutor(
         max_workers=len(tasks)) as executor:
     for t in tasks:

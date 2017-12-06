@@ -10,8 +10,8 @@ print("starting Beta - cpu_count: %s" % multiprocessing.cpu_count())
 
 
 class Beta(Component):
-    def __init__(self, topic, offset="largest"):
-        super().__init__(topic, offset=offset)
+    def __init__(self, topic):
+        super().__init__(topic, pre_drain=True)
 
     def process_one(self, zipkin_context, data):
         self.sub1()
@@ -25,5 +25,5 @@ class Beta(Component):
         time.sleep(0.05)
 
 
-b = Beta('beta_topic', offset="largest")
+b = Beta('beta_topic')
 b.run()
