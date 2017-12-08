@@ -9,13 +9,13 @@ alpha:
     tag: latest
 beta:
   name: beta
-  replicaCount: 1
+  replicaCount: 3
   image:
     name: quay.io/russf/concourse-trial-beta
     tag: latest
 gamma:
   name: gamma
-  replicaCount: 1
+  replicaCount: 3
   image:
     name: quay.io/russf/concourse-trial-gamma
     tag: latest
