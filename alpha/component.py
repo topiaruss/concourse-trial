@@ -31,11 +31,12 @@ class Alpha(Component):
     @zipkin_client_span(service_name='Alpha', span_name='sub1.sub2')
     def sub1sub2(self):
         time.sleep(0.02)
+        raise ValueError('Dummy exception')
+
 
     @zipkin_client_span(service_name='Alpha', span_name='sub2')
     def sub2(self):
         time.sleep(0.03)
-        raise ValueError('Dummy exception')
 
 
 a = Alpha('alpha_topic')
