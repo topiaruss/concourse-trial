@@ -1,5 +1,6 @@
 import concurrent.futures
 import datetime
+import random
 import time
 
 from msgflow.component import Component, Msgflow
@@ -58,7 +59,8 @@ class Alpha(Component):
     @zipkin_client_span(service_name='Alpha', span_name='sub2')
     def sub2(self):
         time.sleep(0.03)
-        raise ValueError('Dummy exception')
+        if random.choice([True, False]):
+            raise ValueError('Dummy exception')
 
 
 a = Alpha('alpha_topic')
