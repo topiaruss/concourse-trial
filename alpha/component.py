@@ -4,14 +4,18 @@ import time
 
 from msgflow.component import Component, Msgflow
 from py_zipkin.zipkin import zipkin_client_span
+from py_zipkin.zipkin import zipkin_server_span
+from py_zipkin.zipkin import zipkin_span
 
 
 class Alpha(Component):
     def __init__(self, topic):
         super().__init__(topic, pre_drain=True)
+        self.zipkin_context = None
 
     def process_one(self, zipkin_context, data):
-        #self.logger.debug('TRIGGER CHAIN %s' % data)
+        # self.logger.debug('TRIGGER CHAIN %s' % data)
+        self.zipkin_context = zipkin_context
         zipkin_context.update_binary_annotations(dict(foo='bar'))
         self.sub1()
         self.enqueue_item(zipkin_context, 'beta_topic', dict(beta=2))
@@ -23,20 +27,38 @@ class Alpha(Component):
         self.sub1sub1()
         time.sleep(0.03)
         self.sub1sub2()
+        time.sleep(0.03)
+        self.sub1sub3()
+        time.sleep(0.03)
+        self.sub1sub4()
 
     @zipkin_client_span(service_name='Alpha', span_name='sub1.sub1')
     def sub1sub1(self):
         time.sleep(0.02)
 
-    @zipkin_client_span(service_name='Alpha', span_name='sub1.sub2')
+    @zipkin_server_span(service_name='Alpha', span_name='sub1.sub2')
     def sub1sub2(self):
         time.sleep(0.02)
-        # when exception here - action ends with sub2. Never enqueue beta_topic. Never reach sub2.
+        # when exception here - action ends with sub2.
+        # Never enqueue beta_topic. Never reach sub2.
+
+    @zipkin_server_span(service_name='Alpha', span_name='sub1.sub3')
+    def sub1sub3(self):
+        self.zipkin_context.update_binary_annotations(dict(
+            up='down\nfurther asd f asdf as df asdfasasdf asd fasd'))
+        time.sleep(0.02)
+
+    @zipkin_span(service_name='Alpha', span_name='sub1.sub4')
+    def sub1sub4(self):
+        self.zipkin_context.update_binary_annotations(dict(
+            up='down\ndeeper \'n down',
+            time=str(datetime.datetime.now())))
+        time.sleep(0.02)
 
     @zipkin_client_span(service_name='Alpha', span_name='sub2')
     def sub2(self):
         time.sleep(0.03)
-        #raise ValueError('Dummy exception')
+        raise ValueError('Dummy exception')
 
 
 a = Alpha('alpha_topic')
