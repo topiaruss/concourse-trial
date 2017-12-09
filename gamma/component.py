@@ -18,6 +18,10 @@ class Gamma(Component):
 
     @zipkin_client_span(service_name='Gamma', span_name='sub1')
     def sub1(self):
+        self.zipkin_context.update_binary_annotations(dict(
+            winter='in the rain',
+            zdict=dict(a=1,b=2,c='see')
+        ))
         time.sleep(0.02)
 
 

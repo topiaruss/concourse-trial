@@ -22,6 +22,8 @@ class Beta(Component):
 
     @zipkin_client_span(service_name='Beta', span_name='sub1')
     def sub1(self):
+        self.zipkin_context.update_binary_annotations(dict(
+            autumn='in the shade'))
         time.sleep(0.05)
 
 

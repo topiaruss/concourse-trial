@@ -45,14 +45,14 @@ class Alpha(Component):
     @zipkin_server_span(service_name='Alpha', span_name='sub1.sub3')
     def sub1sub3(self):
         self.zipkin_context.update_binary_annotations(dict(
-            up='down\nfurther asd f asdf as df asdfasasdf asd fasd'))
+            spring='down by\nthe river'))
         time.sleep(0.02)
 
     @zipkin_span(service_name='Alpha', span_name='sub1.sub4')
     def sub1sub4(self):
         self.zipkin_context.update_binary_annotations(dict(
-            up='down\ndeeper \'n down',
-            time=str(datetime.datetime.now())))
+            summer='in the heat',
+            some_time=str(datetime.datetime.now())))
         time.sleep(0.02)
 
     @zipkin_client_span(service_name='Alpha', span_name='sub2')
