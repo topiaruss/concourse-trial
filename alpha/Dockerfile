@@ -1,16 +1,6 @@
-FROM python:alpine3.6
+FROM quay.io/russf/docker-py-base-image
 
-RUN apk update \
-    && apk add --virtual build-dependencies \
-        build-base \
-        gcc \
-        wget \
-        git \
-        librdkafka-dev \
-    && apk add \
-        bash
-
-RUN pip install pipenv && mkdir app
+RUN mkdir app
 
 WORKDIR app
 
