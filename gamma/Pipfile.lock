@@ -82,7 +82,7 @@
         },
         "msgflow": {
             "hashes": [],
-            "version": "==0.1.1.dev3+g8b756d3"
+            "version": "==0.1.1.dev5+g9e22624"
         },
         "pluggy": {
             "hashes": [
