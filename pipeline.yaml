@@ -11,14 +11,17 @@ jobs:
     - do:
       - put: concourse-trial-docker-image-alpha
         params:
+          load_repository: quay.io/russf/docker-py-base-image
           build: concourse-trial/alpha
     - do:
       - put: concourse-trial-docker-image-beta
         params:
+          load_repository: quay.io/russf/docker-py-base-image
           build: concourse-trial/beta
     - do:
       - put: concourse-trial-docker-image-gamma
         params:
+          load_repository: quay.io/russf/docker-py-base-image
           build: concourse-trial/gamma
 
 resources:
