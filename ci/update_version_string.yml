@@ -1,8 +1,0 @@
----
-platform: linux
-
-inputs:
-- name: concourse-trial
-
-run:
-  path: concourse-trial/ci/update_version_string.sh
