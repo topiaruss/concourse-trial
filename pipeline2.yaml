@@ -13,11 +13,15 @@ jobs:
       platform: linux
       image_resource:
         type: docker-image
-        source: {repository: python}
+        source:
+          email: {{quay_io-email}}
+          username: {{quay_io-username}}
+          password: {{quay_io-password}}
+          repository: quay.io/russf/docker-py-base-image
       run:
-        path: python
+        path: pipenv
         args:
-        - -c"print('a'.__doc__)"
+        - 'run python ci/update_version_string.py'
         dir: ""
 
 #  - aggregate:
