@@ -9,6 +9,7 @@ jobs:
     trigger: true
 
   - task: generate-version-files
+    image: docker-py-base-image
     file: concourse-trial/ci/generate-version-files.yml
 
   - aggregate:
