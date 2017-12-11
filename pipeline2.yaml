@@ -19,10 +19,10 @@ jobs:
           password: {{quay_io-password}}
           repository: quay.io/russf/docker-py-base-image
       run:
-        path: pipenv
+        path: bash
         args:
-        - 'run python ci/update_version_string.py'
-        dir: ""
+        - update_version_string.sh
+        dir: "ci"
 
 #  - aggregate:
 #    - do:
