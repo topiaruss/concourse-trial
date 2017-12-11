@@ -1,3 +1,3 @@
 #!/usr/bin/env bash
 
-./update_version_string.py
+pipenv run ./update_version_string.py
