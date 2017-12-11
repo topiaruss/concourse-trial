@@ -1,0 +1,16 @@
+---
+platform: linux
+
+image_resource:
+  type: docker-image
+  source:
+  email: {{quay_io-email}}
+  username: {{quay_io-username}}
+  password: {{quay_io-password}}
+  repository: quay.io/russf/docker-py-base-image
+
+inputs:
+- name: concourse-trial
+
+run:
+  path: /generate_version_files.py
