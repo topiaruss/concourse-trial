@@ -7,22 +7,9 @@ jobs:
     trigger: true
   - get: docker-py-base-image
     trigger: true
+  - task: update-version-string
+    file: concourse-trial/ci/update_version_string.yml
 
-  - task: create-version-files
-    config:
-      platform: linux
-      image_resource:
-        type: docker-image
-        source:
-          email: {{quay_io-email}}
-          username: {{quay_io-username}}
-          password: {{quay_io-password}}
-          repository: quay.io/russf/docker-py-base-image
-      run:
-        path: bash
-        args:
-        - update_version_string.sh
-        dir: "ci"
 
 #  - aggregate:
 #    - do:
