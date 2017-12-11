@@ -15,7 +15,6 @@ class Alpha(Component):
         self.zipkin_context = None
 
     def process_one(self, zipkin_context, data):
-        # self.logger.debug('TRIGGER CHAIN %s' % data)
         self.zipkin_context = zipkin_context
         zipkin_context.update_binary_annotations(dict(foo='bar'))
         self.sub1()

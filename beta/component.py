@@ -1,7 +1,5 @@
-import concurrent.futures
 import multiprocessing
 import time
-import datetime
 
 from msgflow.component import Component, Msgflow
 from py_zipkin.zipkin import zipkin_span

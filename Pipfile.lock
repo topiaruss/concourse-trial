@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "d274556384f83e990c4fab99e260929f1e38a4058648c3f9bdc6ea5c6da7801e"
+            "sha256": "d1ea3bb3d9d6509a491fc646b43efce6874e3dc5f218c2a880cb6b2ef3feccca"
         },
         "host-environment-markers": {
             "implementation_name": "cpython",
@@ -59,11 +59,32 @@
             ],
             "version": "==3.0.4"
         },
+        "check-manifest": {
+            "hashes": [
+                "sha256:c02fff2686a24bc48f625723c9d20d6866045c734300abe3d5564edb652192bc",
+                "sha256:2bb906a736a0f026cc5fd6c0dab5a481793b3d7a7d70106cca6e238da5f52d84"
+            ],
+            "version": "==0.36"
+        },
         "confluent-kafka": {
             "hashes": [
                 "sha256:4c34bfe8f823ee3777d93820ec6578365d2bde3cd1302cbd0e44c86b68643667"
             ],
             "version": "==0.11.0"
+        },
+        "devpi-client": {
+            "hashes": [
+                "sha256:996048661f12a95ed3061580407d21baf140cc53c3dba22122b6a6f56d668c50",
+                "sha256:f94dc9a7534fd87d1a0b9325c24362da1a8408ae947645654c8f3935e9e88770"
+            ],
+            "version": "==3.1.0"
+        },
+        "devpi-common": {
+            "hashes": [
+                "sha256:b76e69f4b81a578e5e1fda06c849ff020af572dbbc1330fddd1ad03b074f11ab",
+                "sha256:8b837f42b9ace632aa4fdcb21d16702406ba7be420cbb5f50b64c2c2630a0166"
+            ],
+            "version": "==3.2.0"
         },
         "funcsigs": {
             "hashes": [
@@ -82,7 +103,14 @@
         },
         "msgflow": {
             "hashes": [],
-            "version": "==0.1.1.dev5+g9e22624"
+            "version": "==0.1.1.dev6+g1ff2d6c.d20171211"
+        },
+        "pkginfo": {
+            "hashes": [
+                "sha256:31a49103180ae1518b65d3f4ce09c784e2bc54e338197668b4fb7dc539521024",
+                "sha256:bb1a6aeabfc898f5df124e7e00303a5b3ec9a489535f346bfbddb081af93f89e"
+            ],
+            "version": "==1.4.1"
         },
         "pluggy": {
             "hashes": [
@@ -124,6 +152,19 @@
             ],
             "version": "==2.18.4"
         },
+        "setuptools-scm": {
+            "hashes": [
+                "sha256:cf33fe2700eb86f8df24bd1817b799275ff5c7df81285e0e2fe936ab682e1d83",
+                "sha256:aacf974155145299476415483d589b40b72fd2b88c61ac64d956885a9ad2953e",
+                "sha256:dac89650c7909d238965e163e10b736cbd3a72f28e2dd5c0fea6cf5e49e8562e",
+                "sha256:85a76a91a90a0136bbd8f5e6965e21a44210fb6eac9a1ba7aa73ed934cdc3156",
+                "sha256:3dc14aea0ffc7cb05a874270390c7a53f8e5940889f3e0d1099c76ef1d64ba3f",
+                "sha256:393585ffa3877b2997e5d9e0c3f1aeb34726328ed98c31c6d574504c01f5e63e",
+                "sha256:8f6270dfadb363d5dc75696e36131d614e975495deac126d913479aedda737ac",
+                "sha256:49ab4685589986a42da85706b3311a2f74f1af567d39fee6cb1e088d7a75fb5f"
+            ],
+            "version": "==1.15.6"
+        },
         "six": {
             "hashes": [
                 "sha256:832dc0e10feb1aa2c68dcc57dbb658f1c7e65b9b61af69048abc87a2db00a0eb",
@@ -137,12 +178,27 @@
             ],
             "version": "==0.3.9"
         },
+        "tox": {
+            "hashes": [
+                "sha256:8af30fd835a11f3ff8e95176ccba5a4e60779df4d96a9dfefa1a1704af263225",
+                "sha256:752f5ec561c6c08c5ecb167d3b20f4f4ffc158c0ab78855701a75f5cef05f4b8"
+            ],
+            "version": "==2.9.1"
+        },
         "urllib3": {
             "hashes": [
                 "sha256:06330f386d6e4b195fbfc736b297f58c5a892e4440e54d294d7004e3a9bbea1b",
                 "sha256:cc44da8e1145637334317feebd728bd869a35285b93cbb4cca2577da7e62db4f"
             ],
             "version": "==1.22"
+        },
+        "virtualenv": {
+            "hashes": [
+                "sha256:39d88b533b422825d644087a21e78c45cf5af0ef7a99a1fc9fbb7b481e5c85b0",
+                "sha256:02f8102c2436bb03b3ee6dede1919d1dac8a427541652e5ec95171ec8adbc93a"
+            ],
+            "markers": "python_version != '3.2'",
+            "version": "==15.1.0"
         }
     },
     "develop": {
