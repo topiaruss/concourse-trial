@@ -1,0 +1,79 @@
+jobs:
+- name: concourse-trial-publish-combo
+  public: true
+  serial: true
+  plan:
+  - get: concourse-trial
+    trigger: true
+  - get: docker-py-base-image
+    trigger: true
+
+  - task: create-version-files
+    config:
+      platform: linux
+      image_resource:
+        type: docker-image
+        source: {repository: python}
+      run:
+        path: python
+        args:
+        - -c"print('a'.__doc__)"
+        dir: ""
+
+#  - aggregate:
+#    - do:
+#      - put: concourse-trial-docker-image-alpha
+#        params:
+#          load_repository: quay.io/russf/docker-py-base-image
+#          build: concourse-trial/alpha
+#    - do:
+#      - put: concourse-trial-docker-image-beta
+#        params:
+#          load_repository: quay.io/russf/docker-py-base-image
+#          build: concourse-trial/beta
+#    - do:
+#      - put: concourse-trial-docker-image-gamma
+#        params:
+#          load_repository: quay.io/russf/docker-py-base-image
+#          build: concourse-trial/gamma
+
+resources:
+
+- name: docker-py-base-image
+  type: docker-image
+  source:
+    email: {{quay_io-email}}
+    username: {{quay_io-username}}
+    password: {{quay_io-password}}
+    repository: quay.io/russf/docker-py-base-image
+
+- name: concourse-trial
+  type: git
+  source:
+    uri: https://github.com/topiaruss/concourse-trial.git
+
+#- name: concourse-trial-docker-image-alpha
+#  type: docker-image
+#  source:
+#    email: {{quay_io-email}}
+#    username: {{quay_io-username}}
+#    password: {{quay_io-password}}
+#    repository: quay.io/russf/concourse-trial-alpha
+#
+#- name: concourse-trial-docker-image-beta
+#  type: docker-image
+#  source:
+#    email: {{quay_io-email}}
+#    username: {{quay_io-username}}
+#    password: {{quay_io-password}}
+#    repository: quay.io/russf/concourse-trial-beta
+#
+#- name: concourse-trial-docker-image-gamma
+#  type: docker-image
+#  source:
+#    email: {{quay_io-email}}
+#    username: {{quay_io-username}}
+#    password: {{quay_io-password}}
+#    repository: quay.io/russf/concourse-trial-gamma
+#
+
