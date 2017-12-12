@@ -1,4 +1,16 @@
 jobs:
+
+- name: py-base-build
+  public: true
+  serial: true
+  plan:
+  - get: docker-py-base
+    trigger: true
+  - put: docker-py-base-image
+    params:
+      build: docker-py-base/py-base
+
+
 - name: concourse-trial-publish-combo
   public: true
   serial: true
@@ -7,6 +19,7 @@ jobs:
     trigger: true
   - get: docker-py-base-image
     trigger: true
+    passed: [py-base-build]
 
   - task: generate-version-files
     config:
@@ -21,12 +34,9 @@ jobs:
       inputs:
       - name: concourse-trial
       run:
-#        path: ls
-#        args: ["-apR", "."]
         path: /generate_version_files.py
         args: ["."]
         dir: concourse-trial
-
 
   - aggregate:
     - do:
@@ -46,6 +56,12 @@ jobs:
           build: concourse-trial/gamma
 
 resources:
+
+- name: docker-py-base
+  type: git
+  source:
+    uri: git@github.com:/sirocco-team/docker-py-base.git
+    private_key: {{github-sir-private-key}}
 
 - name: docker-py-base-image
   type: docker-image
