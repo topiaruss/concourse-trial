@@ -7,8 +7,27 @@ jobs:
     trigger: true
   - get: docker-py-base-image
     trigger: true
-  - run:
-      path: pipenv run python ./update_version_string.py
+
+  - task: generate-version-files
+    config:
+      platform: linux
+      image_resource:
+        type: docker-image
+        source:
+          email: {{quay_io-email}}
+          username: {{quay_io-username}}
+          password: {{quay_io-password}}
+          repository: quay.io/russf/docker-py-base-image
+      inputs:
+      - name: concourse-trial
+      run:
+#        path: ls
+#        args: ["-apR", "."]
+        path: /generate_version_files.py
+        args: ["."]
+        dir: concourse-trial
+
+
   - aggregate:
     - do:
       - put: concourse-trial-docker-image-alpha
