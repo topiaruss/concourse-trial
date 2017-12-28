@@ -15,11 +15,12 @@ jobs:
   public: true
   serial: true
   plan:
-  - get: concourse-trial
-    trigger: true
-  - get: docker-py-base-image
-    trigger: true
-    passed: [py-base-build]
+  - aggregate:
+    - get: concourse-trial
+      trigger: true
+    - get: docker-py-base-image
+      trigger: true
+      passed: [py-base-build]
 
   - task: generate-version-files
     config:
