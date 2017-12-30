@@ -34,27 +34,28 @@ jobs:
           repository: quay.io/russf/docker-py-base-image
       inputs:
       - name: concourse-trial
+      outputs:
+      - name: versioned-repo
       run:
         path: /generate_version_files.py
-        args: ["."]
-        dir: concourse-trial
+        args: ["concourse-trial", "versioned-repo"]
 
   - aggregate:
     - do:
       - put: concourse-trial-docker-image-alpha
         params:
           load_repository: quay.io/russf/docker-py-base-image
-          build: concourse-trial/alpha
+          build: versioned-repo/alpha
     - do:
       - put: concourse-trial-docker-image-beta
         params:
           load_repository: quay.io/russf/docker-py-base-image
-          build: concourse-trial/beta
+          build: versioned-repo/beta
     - do:
       - put: concourse-trial-docker-image-gamma
         params:
           load_repository: quay.io/russf/docker-py-base-image
-          build: concourse-trial/gamma
+          build: versioned-repo/gamma
 
 resources:
 
