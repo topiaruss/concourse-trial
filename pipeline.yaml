@@ -53,7 +53,7 @@ jobs:
       inputs:
       - name: versioned-repo
       outputs:
-      - name: updated-deps
+      - name: updated-deps-repo
       run:
         path: /update_all_pipenv_deps
         args: ["versioned-repo", "updated-deps-repo"]
