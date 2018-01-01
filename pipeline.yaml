@@ -6,7 +6,7 @@ jobs:
   plan:
   - get: concourse-devpi-repo
     trigger: true
-  - put: concourse-devpi-resource
+  - put: concourse-devpi-img
     params:
       build: concourse-devpi-repo
 
@@ -15,7 +15,7 @@ jobs:
   serial: true
   plan:
   - aggregate:
-    - get: concourse-devpi-resource
+    - get: concourse-devpi-img
       trigger: true
       passed: [concourse-devpi-build]
     - get: msgflow-git-repo
@@ -143,7 +143,7 @@ resources:
     uri: git@github.com:/sirocco-team/msgflow.git
     private_key: {{github-private-key}}
 
-- name: concourse-devpi-resource
+- name: concourse-devpi-img
   type: docker-image
   source:
     email: {{quay_io-email}}
