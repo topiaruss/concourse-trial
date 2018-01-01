@@ -37,25 +37,43 @@ jobs:
       outputs:
       - name: versioned-repo
       run:
-        path: /generate_version_files.py
+        path: /generate_version_files
         args: ["concourse-trial", "versioned-repo"]
+
+  - task: update-pipenv-deps
+    config:
+      platform: linux
+      image_resource:
+        type: docker-image
+        source:
+          email: {{quay_io-email}}
+          username: {{quay_io-username}}
+          password: {{quay_io-password}}
+          repository: quay.io/russf/docker-py-base-image
+      inputs:
+      - name: versioned-repo
+      outputs:
+      - name: updated-deps
+      run:
+        path: /update_all_pipenv_deps
+        args: ["versioned-repo", "updated-deps-repo"]
 
   - aggregate:
     - do:
       - put: concourse-trial-docker-image-alpha
         params:
           load_repository: quay.io/russf/docker-py-base-image
-          build: versioned-repo/alpha
+          build: updated-deps-repo/alpha
     - do:
       - put: concourse-trial-docker-image-beta
         params:
           load_repository: quay.io/russf/docker-py-base-image
-          build: versioned-repo/beta
+          build: updated-deps-repo/beta
     - do:
       - put: concourse-trial-docker-image-gamma
         params:
           load_repository: quay.io/russf/docker-py-base-image
-          build: versioned-repo/gamma
+          build: updated-deps-repo/gamma
 
 resources:
 

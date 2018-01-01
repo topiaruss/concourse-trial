@@ -103,7 +103,7 @@
         },
         "msgflow": {
             "hashes": [],
-            "version": "==0.1.1.dev37+g11ac2ca"
+            "version": "==0.1.1.dev41+g2e92976"
         },
         "pkginfo": {
             "hashes": [
