@@ -1,17 +1,45 @@
 jobs:
 
+- name: concourse-devpi-build
+  public: true
+  serial: true
+  plan:
+  - get: concourse-devpi-repo
+    trigger: true
+  - put: concourse-devpi-resource
+    params:
+      build: concourse-devpi-repo
+
+- name: msgflow-build
+  public: true
+  serial: true
+  plan:
+  - aggregate:
+    - get: concourse-devpi-resource
+      trigger: true
+      passed: [concourse-devpi-build]
+    - get: msgflow-git-repo
+      trigger: true
+    - get: docker-py-base-image
+      trigger: true
+  - task: unit
+    file: msgflow-git-repo/ci/tasks/unit.yaml
+    input_mapping: {repo: msgflow-git-repo}
+  - put: msgflow
+    params: {file: "msgflow-git-repo"}
+
 - name: py-base-build
   public: true
   serial: true
   plan:
-  - get: docker-py-base
+  - get: docker-py-base-repo
     trigger: true
   - put: docker-py-base-image
     params:
-      build: docker-py-base/py-base
+      build: docker-py-base-repo/py-base
 
 
-- name: concourse-trial-publish-combo
+- name: concourse-trial
   public: true
   serial: true
   plan:
@@ -21,6 +49,9 @@ jobs:
     - get: docker-py-base-image
       trigger: true
       passed: [py-base-build]
+    - get: msgflow
+      trigger: true
+      passed: [msgflow-build]
 
   - task: generate-version-files
     config:
@@ -60,28 +91,43 @@ jobs:
 
   - aggregate:
     - do:
-      - put: concourse-trial-docker-image-alpha
+      - put: concourse-trial-image-alpha
         params:
           load_repository: quay.io/russf/docker-py-base-image
           build: updated-deps-repo/alpha
     - do:
-      - put: concourse-trial-docker-image-beta
+      - put: concourse-trial-image-beta
         params:
           load_repository: quay.io/russf/docker-py-base-image
           build: updated-deps-repo/beta
     - do:
-      - put: concourse-trial-docker-image-gamma
+      - put: concourse-trial-image-gamma
         params:
           load_repository: quay.io/russf/docker-py-base-image
           build: updated-deps-repo/gamma
 
+resource_types:
+
+- name: devpi
+  type: docker-image
+  source:
+    email: {{quay_io-email}}
+    username: {{quay_io-username}}
+    password: {{quay_io-password}}
+    repository: quay.io/russf/concourse-devpi-resource
+    tag: latest
+
 resources:
 
-- name: docker-py-base
-  type: git
+- name: msgflow
+  type: devpi
   source:
-    uri: git@github.com:/sirocco-team/docker-py-base.git
-    private_key: {{github-sir-private-key}}
+    uri: http://devpi:3141
+    index: russ/dev
+    package: msgflow
+    username: {{devpi-russ-username}}
+    password: {{devpi-russ-password}}
+    versioning: semantic
 
 - name: docker-py-base-image
   type: docker-image
@@ -91,12 +137,39 @@ resources:
     password: {{quay_io-password}}
     repository: quay.io/russf/docker-py-base-image
 
+- name: msgflow-git-repo
+  type: git
+  source:
+    uri: git@github.com:/sirocco-team/msgflow.git
+    private_key: {{github-private-key}}
+
+- name: concourse-devpi-resource
+  type: docker-image
+  source:
+    email: {{quay_io-email}}
+    username: {{quay_io-username}}
+    password: {{quay_io-password}}
+    repository: quay.io/russf/concourse-devpi-resource
+
+- name: concourse-devpi-repo
+  type: git
+  source:
+    uri: git@github.com:/topiaruss/concourse-devpi-resource.git
+    branch: master
+    private_key: {{github-private-key}}
+
+- name: docker-py-base-repo
+  type: git
+  source:
+    uri: git@github.com:/sirocco-team/docker-py-base.git
+    private_key: {{github-sir-private-key}}
+
 - name: concourse-trial
   type: git
   source:
     uri: https://github.com/topiaruss/concourse-trial.git
 
-- name: concourse-trial-docker-image-alpha
+- name: concourse-trial-image-alpha
   type: docker-image
   source:
     email: {{quay_io-email}}
@@ -104,7 +177,7 @@ resources:
     password: {{quay_io-password}}
     repository: quay.io/russf/concourse-trial-alpha
 
-- name: concourse-trial-docker-image-beta
+- name: concourse-trial-image-beta
   type: docker-image
   source:
     email: {{quay_io-email}}
@@ -112,7 +185,7 @@ resources:
     password: {{quay_io-password}}
     repository: quay.io/russf/concourse-trial-beta
 
-- name: concourse-trial-docker-image-gamma
+- name: concourse-trial-image-gamma
   type: docker-image
   source:
     email: {{quay_io-email}}
